@@ -5,6 +5,8 @@
 'Youtube, Jojikiba: Walking on grass (sound effect)'
 'MGQ Battle Sequence'
 'Pokemon: Aquacorde Town'
+'Pokemon: Unwavering Emotions'
+'Hajime no Ippo: Weight of my pride'
 
     
 
@@ -317,13 +319,14 @@ while attack == 0:
         weapon = claw
     else:
         continue
+php = 17
 # Enemy Stats, copy paste for each enemy to change stats, maybe weapons
 ehp = 20
-eatk = 10
-edef = 10
+eatk = 12
+edef = 13
 esp = 10
 espd = 10
-eweap = 5
+eweap = 7
 eexp = 10
 
 #Additional damage random functions
@@ -435,7 +438,7 @@ def pdmg():
 def pdmt():
     if php > 0:
         global php
-        padamt = ((eweap + eatk)) - (pdef) + add
+        padamt = ((eweap + eatk)) - (pdef + pspd/2) + add
         php -= padamt
         messagebox.showinfo("Battle", "" + name2 + " took " + str(padamt) + " damage.")
     else:
@@ -479,6 +482,10 @@ def battleseq():
     global pspd
     global spd
     global espd
+    global attack
+    global defense
+    global patk
+    global pdef
     hp
     while ehp > 0:
         if hp <= 0:
@@ -568,7 +575,7 @@ def battleseq():
                         pdmg()
                         victim()
                     else:
-                        victim
+                        victim()
                         pdmg()
                                 
                                 
@@ -604,7 +611,7 @@ def battleseq():
         lvl += 1
         messagebox.showinfo("Level Up!", "" + name + " has reached level " + str(lvl) + "."
                             " All stats were upped by 4!")
-        speed += 4
+        spd += 4
         attack += 4
         defense += 4
         hp +=5
@@ -634,7 +641,7 @@ messagebox.showinfo(""+ name2 + "", "Alright let's do this. I'm "
 
 while ehp > 0:
     tutorial = simpledialog.askstring("" + name2 + "", "Do want me to explain "
-                                  "how these work? (y/n)")
+                                  "how these work? (yes/no)")
     if tutorial == "Yes" or tutorial == "yes":
         messagebox.showinfo("" + name2 + "", "OK, we'll start with guard."
                         " if you guard, you'll take less damage and "
@@ -718,6 +725,7 @@ choice = simpledialog.askstring("" + name2 + "",
                                 "\nare you ready to go to town? Or do you want to do some training?" + \
                                 "\n              (A) Let's head to town."
                                 "\n              (B) Need to get stronger. Let's train.")
+
 while choice != "a" or choice == "A":
     if choice == "b" or choice == "B":
         # Enemy Stats, copy paste for each enemy to change stats, maybe weapons
@@ -727,7 +735,7 @@ while choice != "a" or choice == "A":
         esp = 15
         espd = 13
         eweap = 10
-        eexp = 1
+        eexp = 2
 
         messagebox.showinfo("" + name2 + "", "Alright, I'll leave you too it."
                             "Let me know when you're ready.")
@@ -746,11 +754,139 @@ while choice != "a" or choice == "A":
     elif choice == "b" or choice == "B":
         break
     else:
-        messagebox.showinfo("" + name2 + "", "What was that?")
-        choice
+        choice == messagebox.showinfo("" + name2 + "",
+                            "\nWhat was that?" + \
+                            "\n      (A) Sorry. Let's head to town"
+                            "\n      (B) Let's train some more")
+        continue
+
+#At the inn and backstories
+
 messagebox.showinfo("" + name2 + "", "Alright, to town it is. Let's make sure"
                     " you get taken care of.")
+os.startfile('town.mp3')
+messagebox.showinfo("" + name2 +  "",
+                    "Well, here we are. Now the inn should be- Ah! "
+                    "There it is! Come on, you can rest up there.")
+messagebox.showinfo("Innkeeper", "Oh, hello there " + name2 + ". I"
+                    " see that you've brought a friend along.")
+messagebox.showinfo("" + name2 + "", "Haha, yup. He's been through"
+                    " quite a bit. I found him unconscious on the "
+                    "road and we were attacked. But he proved to be "
+                    "quite the capable fighter.")
+messagebox.showinfo("Innkeeper", "Well, just head on up and you'll find"
+                    " " + name2 + "'s room. By the way what was your name?"
+                    "... Oh, " + name + " is it? Well pleased to make your"
+                    " acquaintance. And please, enjoy your stay.")
+messagebox.showinfo("" + name2 + "", "Thanks. " + name + ", after you"
+                    "r rest, find me and I'll help you out, ok?"
+                    " See you then.")
+messagebox.showinfo("" + name + "", "" + name + " went to sleep!")
+os.startfile('emotion.mp3')
+messagebox.showinfo("" + name + "", "" + name + " woke up and looked "
+                    "around. Heading downstairs, he hears banging"
+                    " sounds. Looking around, he sees " + name2 + ""
+                    ". " + name + " heads towards him.")
+messagebox.showinfo("" + name2 + "", "Hah! Take that! No, no, no! "
+                    "I can't help people if I can't get that move"
+                    " down... Oh! " + name + "! I, uh, didn't see"
+                    " you there. Yeah I train by myself a lot...")
+choice = simpledialog.askstring("" + name + "",
+                                "\n    (A) Training without me? Let me join!" + \
+                                "\n    (B) What's up? Something bothering you?"
+                                "\n    (C) Come on, back to the inn.")
+while choice != "c" or choice != "C":
+    os.startfile('emotion.mp3')
+    if choice == "a" or choice == "A":
+        messagebox.showinfo("" + name2 + "", "Really? Alright, uh, let's get started")
+        messagebox.showinfo("Knight", "Hey, are you two training too?"
+                            " Why don't we spar?")
+        messagebox.showinfo("" + name2 + "",
+                            "Hey, sounds good. Ready for this " + name + "?")
+        os.startfile('battle2.mp3')
+        ehp = 25
+        eatk = 17
+        edef = 18
+        esp = 15
+        espd = 18
+        eweap = 10
+        eexp = 8
+        ename == "Knight"
+        battleseq()
+        os.startfile('vic1.mp3')
+        messagebox.showinfo("Knight", "Whoa, you two are tough!"
+                            " Ha, didn't think you had it in ya."
+                            " Ever think of joining the guard?")
+        messagebox.showinfo("" + name2 + "",
+                            "Ha, you weren't so bad yourself. "
+                            "And we'll definitely think about your offer."
+                            " Anyways, take it easy.")
+        messagebox.showinfo("Knight", "Same to you! See you later!")
+        messagebox.showinfo("" + name2 + "", "That guy was pretty tough."
+                            " Anyways, let's head back to the inn. Also,"
+                            " " + name + "? Thanks. I really needed that.")
+        break
 
+    elif choice == "B" or choice == "b":
+        messagebox.showinfo("" + name2 + "", "*Sigh* Well, " + name + ""
+                            ", I never told you this but... My parent's wer"
+                            "e murdered by the gang that terrorizes the area"
+                            " around here. I grew up fending for myself and...")
+        messagebox.showinfo("" + name2 + "", "...")
+        messagebox.showinfo("" + name2 + "", "...I'm just so freaking angry."
+                            " They need to be taken down! AHHHH!! ...")
+        messagebox.showinfo("" + name2 + "", "Sorry. You didn't deserve"
+                            " that. But... I really appreciate your concern."
+                            " My parents may have died but they must've thought"
+                            " ahead, cause they left me these weapons and a "
+                            "good reputation. That's why I vowed to fight for"
+                            " those who can't fight for themselves.")
+        os.startfile('town.mp3')
+        choice = simpledialog.askstring("" + name + "",
+                                "\nAnyways, thanks for listening. What do you want to do now?" + \
+                                "\n    (A) Let's train some more!"
+                                "\n    (B) Can I here your story again?"
+                                "\n    (C) Come on, back to the inn.")
+        continue
+
+    elif choice == "C" or choice == "c":
+        break
+    
+    else:
+        choice = simpledialog.askstring("" + name + "",
+                                "\n    (A) Training without me? Let me join!" + \
+                                "\n    (B) What's up? Something bothering you?"
+                                "\n    (C) Come on, back to the inn.")
+messagebox.showinfo("" + name2 + "", "Alright then. Let's head back to the"
+                    " inn.")
+os.startfile('silence.mp3')
+messagebox.showinfo("Civilian", "Someone help!!")
+os.startfile('encounter.mp3')
+messagebox.showinfo("" + name2 + "", "That didn't sound good. Come on"
+                    " " + name + ", let's go!")
+messagebox.showinfo("Thug", "Lady, give me your jewelry or else!")
+messagebox.showinfo("Civilian", "N-no, please!")
+messagebox.showinfo("" + name2 + "", "Hey, let her go! You're gonna"
+                    " have to go through us first!")
+messagebox.showinfo("Thug", "Ha, I finally found you!")
+messagebox.showinfo("" + name2 + "", "Wha-What?")
+messagebox.showinfo("Thug", "You won't get away with what you did to the boss.")
+messagebox.showinfo("" + name2 + "", "Whoa! This guy means business!"
+                    " " + name + ", get ready!")
+
+ehp = 28
+eatk = 19
+edef = 21
+esp = 15
+espd = 18
+eweap = 8
+eexp = 13
+battleseq()
+messagebox.showinfo("Thug", "The boss wasn't kidding about your guy's"
+                    " strength... Guess I'll have to get the rest of the gang.")
+                            
+        
+ 
                 
 
 
