@@ -53,7 +53,8 @@ patk = 0
 pdef = 0
 psp = 0
 pspd = 0
-
+exp = 0
+global exp
 # Define exp gain
 def exp():
     global attack
@@ -64,18 +65,22 @@ def exp():
     global pspd
     global spdef
     global psp
+    global hp
+    global php
     lvl = 1
     exp = 0
     exp += eexp
     global lvl
     global exp
-    attack += 15
-    defense += 10
-    spdef +=15
-    spd += 20
     if exp > 15:
         lvl += 1
         exp -= 15
+        attack += 3
+        defense += 2
+        spdef += 3
+        spd += 3
+        hp += 3
+    
         messagebox.showinfo("Level up!", "" + name + " grew to level "
                             "" + str(lvl) + ".")
         
@@ -97,6 +102,10 @@ def exp():
                             "" + str(plvl) + ".")
 # Intro
 os.startfile('wind.mp3')
+messagebox.showinfo("RPG", "Welcome to the RPG game. No specifics. A tutorial"
+                    " will be given. The game will take both strategy and luck"
+                    " but is easy enough to play and is a basic program. Enjoy"
+                    " and good luck!")
 messagebox.showinfo("...", "...Hey...")
 messagebox.showinfo("...", "...Get up...")
 os.startfile('opening.mp3')
@@ -155,8 +164,8 @@ while attack == 0:
                             (B) Sword-Take a strike and kill the enemy; Be weary of your quick rivals
                             (C) Claws-A balanced weapon. You've got the speed, the attack, and defense. Just don't let that get to your head""")
     if weapon == "a" or weapon == "A":
-        attack += 20
-        defense += 10
+        attack += 18
+        defense += 13
         spdef +=15
         spd += 20
         def crit():
@@ -173,10 +182,10 @@ while attack == 0:
             partner = simpledialog.askstring("Partner's Weapon", "(1) Sword (2)Claws")
             if ((partner == "1" and weapon == "a" or weapon == "A") or (partner == "2" and weapon == "C" or weapon == "c")):
                 partner = swd
-                patk += 18
-                pdef += 15
+                patk += 16
+                pdef += 16
                 psp += 15
-                pspd += 8
+                pspd += 10
                 def pcrit():
                     pcr = random.randint(1, 15)
                     if pcr == 1 or pcr == 15:
@@ -205,10 +214,10 @@ while attack == 0:
 
 
     elif weapon == "b" or weapon == "B":
-        attack += 20
-        defense += 20
+        attack += 18
+        defense += 18
         spdef += 17
-        spd += 10
+        spd += 12
         def crit():
             cr = random.randint(1, 15)
             if cr == 1:
@@ -223,8 +232,8 @@ while attack == 0:
             partner = simpledialog.askstring("Partner's Weapon", "(1) Dagger (2)Claws")
             if (partner == "1" and ((weapon == "b" or weapon == "B") or (weapon == "C" or weapon == "c"))):
                 partner = dag
-                patk += 13
-                pdef += 8
+                patk += 17
+                pdef += 12
                 psp += 13
                 pspd += 18
                 def pcrit():
@@ -272,8 +281,8 @@ while attack == 0:
             partner = simpledialog.askstring("Partner's Weapon", "(1) Dagger (2)Sword")
             if (partner == "1" and ((weapon == "b" or weapon == "B") or (weapon == "C" or weapon == "c"))):
                 partner = dag
-                patk += 13
-                pdef += 8
+                patk += 17
+                pdef += 11
                 psp += 13
                 pspd += 18
                 def pcrit():
@@ -285,10 +294,10 @@ while attack == 0:
                 pmiss = random.randint(1, 6)                                                                  
             elif (partner == "2" and (weapon == "C" or weapon == "c")):
                 partner = swd
-                patk += 15
-                pdef += 15
+                patk += 19
+                pdef += 17
                 psp += 15
-                pspd += 15
+                pspd += 12
                 # How will the player attack twice as well as display the info
                 """def ptwice():
                     two = random.randint(1, 1)
@@ -309,7 +318,7 @@ while attack == 0:
     else:
         continue
 # Enemy Stats, copy paste for each enemy to change stats, maybe weapons
-ehp = 10
+ehp = 20
 eatk = 10
 edef = 10
 esp = 10
@@ -318,17 +327,15 @@ eweap = 5
 eexp = 10
 
 #Additional damage random functions
-add = random.randint(3, 5)
+add = random.randint(2, 6)
 
 # Battle formulas
 # Defining Twice and Miss functions for player
 def mis():
+    global battle
     misss = random.randint(1, 20)
-    if miss == 1:
-        global damt
-        damt = 0
-        messagebox.showinfo("Miss!", "The enemy missed the attack!")
-    elif (battle == "guard" or battle == "Guard") and misss == 1:
+    misss
+    if (battle == "guard" or battle == "Guard"):
         global misss
         misss = random.randint(1, 7)
         if misss == 1:
@@ -337,6 +344,11 @@ def mis():
             messagebox.showinfo("Dodge!", "" + name + " dodged the attack!")
         else:
             pass
+    elif misss == 1:
+        global damt
+        damt = 0
+        messagebox.showinfo("Miss!", "The enemy missed the attack!")
+    
     else:
         pass
 
@@ -348,7 +360,7 @@ def dmg():
         twice
         if twice == 1:
             global ehp
-            damg = ((((attack + weapon)/2) - edef) + add)
+            damg = (attack + weapon) - (edef)
             ehp -= damg
             messagebox.showinfo("Battle", "You dealed " + str(damg) + " damage.")
             damg /= 2
@@ -357,81 +369,131 @@ def dmg():
                                 "damage! Double hit!")
         else:
             global ehp
-            damg = ((((attack + weapon)/2) - edef) + add)
+            damg = (attack + weapon) - (edef)
             ehp -= damg
             messagebox.showinfo("Battle", "You dealed " + str(damg) + " damage.")
             damg /= 2
     else:
         global ehp
-        damg = ((((attack + weapon)/2) - edef) + add)
+        damg = (attack + weapon) - (edef)
         ehp -= damg
         messagebox.showinfo("Battle", "You dealed " + str(damg) + " damage.")
         
             
 def dmt():
+    global battle
     if battle == "attack" or battle == "Attack" or battle == "item" or battle == "Item":
         global hp
-        damt = (((2 * eatk + eweap) - (defense*2)) + add)
+        damt = (eatk + eweap) - (defense + spd/2) + add
         hp -= damt
         mis()
         messagebox.showinfo("Battle", "You took " + str(damt) + " damage.")
 
     elif battle == "guard" or battle == "Guard":
         global hp
-        damt = ((((2 * eweap + eatk)) - (defense * 2)) + add)/2
+        damt = (eatk + eweap) - (defense + spd/2) + add
         global damt
         mis()
+        damt /= 2
         hp -= damt
-        messagebox.showinfo("Battle", "You took " + str(damt) + " damage.")
+        messagebox.showinfo("Battle", "You took a reduced " + str(damt) + " damage.")
 
 # Partner
 def pdmg():
-    if partner == 2 and (weapon != "c" or weapon != "C"): 
-        ptwice
-        if ptwice == 1:
-            global ehp
-            pdamg = ((((patk + int(partner))/2) - edef)+ add)
-            ehp -= pdamg
-            messagebox.showinfo("Battle", "" + name2 + " dealed " + str(pdamg) + " damage.")
-            pdamg /= 2
-            ehp -= pdamg
-            messagebox.showinfo("Battle", "" + name2 + " dealed an additional"
-                                " " + str(pdamg) + " damage! Double hit!")
+    global php
+    global ptwice
+    while php > 0:
+        if partner == 2 and (weapon != "c" or weapon != "C"): 
+            ptwice
+            if ptwice == 1:
+                global ehp
+                pdamg = (patk + partner) - (edef)
+                ehp -= pdamg
+                messagebox.showinfo("Battle", "" + name2 + " dealed " + str(pdamg) + " damage.")
+                pdamg /= 2
+                ehp -= pdamg
+                messagebox.showinfo("Battle", "" + name2 + " dealed an additional"
+                                    " " + str(pdamg) + " damage! Double hit!")
+                break
+            else:
+                global ehp
+                pdamg = ((patk + partner)/2) - (edef/2)
+                ehp -= pdamg
+                messagebox.showinfo("Battle", "" + name2 + " dealed " + str(pdamg) + " damage.")
+                break
         else:
             global ehp
-            pdamg = ((((patk + int(partner))/2) - edef)+ add)
+            pdamg = ((patk + partner)/2) - (edef/2)
             ehp -= pdamg
             messagebox.showinfo("Battle", "" + name2 + " dealed " + str(pdamg) + " damage.")
+            break
+    if php <= 0:
+        php = 0
+        messagebox.showinfo("Battle", "" + name2 + " can't go on!")
     else:
-        global ehp
-        pdamg = ((((patk + int(partner))/2) - edef)+ add)
-        ehp -= pdamg
-        messagebox.showinfo("Battle", "" + name2 + " dealed " + str(pdamg) + " damage.")
+        pass
 def pdmt():
-    global php
-    padamt = (((2 * eatk + eweap) - pdef) + add)
-    php -= padamt
-    messagebox.showinfo("Battle", "You took " + str(padamt) + " damage.")
-    
+    if php > 0:
+        global php
+        padamt = ((eweap + eatk)) - (pdef) + add
+        php -= padamt
+        messagebox.showinfo("Battle", "" + name2 + " took " + str(padamt) + " damage.")
+    else:
+        global php
+        php = 0
+        messagebox.showinfo("Battle", "" + name2 + " can't go on!")
+        
 # Damaging partner or damaging player
 def victim():
-    vic = random.randint(1, 2)
-    if vic == 1:
-        dmt()
+    if php <= 0:
+        vic = random.randint(1, 1)
+        if vic == 1:
+            dmt()
+        else:
+            dmt()
     else:
-        pdmt()
+        vic = random.randint(1, 2)
+        if vic == 1:
+            dmt()
+        else:
+            pdmt()
         
+
+# Exp
+exp = 0
+pexp = 0
+lvl = 1
+plvl = 1
+
+# HP Resetter Variables
+bhp = 20 + (lvl * 5) -5
+bphp = 15 + (plvl * 5) -5
+
 # Battle Choices
 def battleseq():
     global hp
+    global php
+    global ehp
+    global exp
+    global pexp
+    global pspd
+    global spd
+    global espd
+    hp
     while ehp > 0:
         if hp <= 0:
-            messagebox.info("" + name2 + "", "Stay with me! No, you can't!"
+            os.startfile('death.mp3')
+            messagebox.showinfo("" + name2 + "", "Stay with me! No, you can't!"
                             " Don't-")
             messagebox.showinfo(". . .", "" + name + " took too much "
                                 "damage and failed to complete his journey."
                                 " Thus, ended " + name + " and " + name2 + "'s journey.")
-            messagebox.showinfo("You Lost", "you lost")
+            messagebox.showinfo("You Lost", "You lost")
+            root.destroy()
+            os._exit
+            break
+            
+            
         else:
             battle = simpledialog.askstring("\nBattle", "HP: " + str(hp) + "" + \
                                             "\nPartner HP: " + str(php) + ""
@@ -445,7 +507,7 @@ def battleseq():
                         pdmg()
                         victim()
                     else:
-                        victim
+                        victim()
                         pdmg()
                                 
                                 
@@ -470,12 +532,13 @@ def battleseq():
                         pdmg()
                         dmg()
             elif battle == "guard" or battle == "Guard":
+                messagebox.showinfo("Battle", "" + name + " took a defensive stance.")
                 if spd >= espd and spd >= pspd:
                     if pspd >= espd:
                         pdmg()
                         victim()
                     else:
-                        victim
+                        victim()
                         pdmg()
                                 
                                 
@@ -496,7 +559,9 @@ def battleseq():
                         victim()
                         pdmg()
             elif battle == "item" or battle == "Item":
-                hp += (hp/4)
+                hp += (bhp/4)
+                messagebox.showinfo("Battle", "" + name + " healed "
+                                    "" + str(bhp/4) + " health!")
 
                 if spd >= espd and spd >= pspd:
                     if pspd >= espd:
@@ -525,8 +590,39 @@ def battleseq():
                         pdmg()
             else:
                 continue
-
-
+    
+    global bhp
+    global bphp
+    global lvl
+    global plvl
+    hp = bhp
+    php = bphp
+    exp += eexp
+    messagebox.showinfo("Battle", "" + name + " gained " + str(eexp) + " experience points.")
+    if exp > 15:
+        exp -= 15
+        lvl += 1
+        messagebox.showinfo("Level Up!", "" + name + " has reached level " + str(lvl) + "."
+                            " All stats were upped by 4!")
+        speed += 4
+        attack += 4
+        defense += 4
+        hp +=5
+    else:
+        pass
+    pexp += eexp
+    messagebox.showinfo("Battle", "" + name2 + " gained " + str(eexp) + " experience points.")
+    if pexp > 17:
+        pexp - 17
+        plvl += 1
+        messagebox.showinfo("Level Up!", "" + name2 + " has reached level " + str(lvl) + "."
+                            "All stats were upped by 4!")
+        pspd += 4
+        patk += 4
+        pdef += 4
+        php += 5
+    else:
+        pass
         
 
 # Battle 1
@@ -548,7 +644,7 @@ while ehp > 0:
             dmt()
             
         else:
-            dmt()/2
+            dmt()
         messagebox.showinfo("Stats", "Your HP: " + str(hp) + "; Partner's HP: " + str(php) + " ;        Enemy HP: " + str(ehp) + ".")
         messagebox.showinfo("" + name2 + "", "Nice, you would've"
                                         " some more damage had you attacked."
@@ -603,8 +699,10 @@ while ehp > 0:
                                                 
     else:
         continue
-exp()
 os.startfile('vic1.mp3')
+messagebox.showinfo("TIPS:", "You only lose if " + name + " (the player) "
+                    "runs out of health. Also, after each battle experience"
+                    " points are gained.")
 messagebox.showinfo("???",
                     "Grr... Guess you two are stronger than I thought."
                     " Can't believe I lost. I'll be back though")
@@ -613,13 +711,13 @@ messagebox.showinfo("???",
 messagebox.showinfo("" + name2 + "",
                     "Yeah get out of here scum. " + name + ", you did"
                     " a really nice job back there! I'm impressed at "
-                    "how you handled that " + str(weapon) + ". I've n"
+                    "how you handled that weapon. I've n"
                     "ever seen anyone do that...")
 choice = simpledialog.askstring("" + name2 + "",
                                 "Anyways, don't worry about it. By the way"
                                 "\nare you ready to go to town? Or do you want to do some training?" + \
-                                "\n(A) Let's head to town."
-                                "\n(B) Need to get stronger. Let's train.")
+                                "\n              (A) Let's head to town."
+                                "\n              (B) Need to get stronger. Let's train.")
 while choice != "a" or choice == "A":
     if choice == "b" or choice == "B":
         # Enemy Stats, copy paste for each enemy to change stats, maybe weapons
@@ -627,7 +725,7 @@ while choice != "a" or choice == "A":
         eatk = 15
         edef = 18
         esp = 15
-        espd = 133
+        espd = 13
         eweap = 10
         eexp = 1
 
@@ -645,8 +743,11 @@ while choice != "a" or choice == "A":
             break
         else:
             continue
-    else:
+    elif choice == "b" or choice == "B":
         break
+    else:
+        messagebox.showinfo("" + name2 + "", "What was that?")
+        choice
 messagebox.showinfo("" + name2 + "", "Alright, to town it is. Let's make sure"
                     " you get taken care of.")
 
