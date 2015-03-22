@@ -3,11 +3,15 @@
 'Music:'
 'Fire Emblem Awakening: Music 62'
 'Fire Emblem Awakening: And what if I cant?'
+'Fire Emblem Awakening: Conquest (Ablaze)'
 'Youtube, Jojikiba: Walking on grass (sound effect)'
 'MGQ Battle Sequence'
 'Pokemon: Aquacorde Town'
 'Pokemon: Unwavering Emotions'
 'Pokemon: Team Aqua/Magma Hideout'
+'Pokemon: Drought'
+'Pokemon: Pallet Town Piano Cover'
+'Pokmeon: vs Zinnia'
 'Hajime no Ippo: Weight of my pride'
 
     
@@ -266,10 +270,10 @@ while attack == 0:
                 continue
         weapon = swd
     elif weapon == "c" or weapon == "C":
-        attack += 17
-        defense += 17
-        spdef += 17
-        spd += 17
+        attack += 15
+        defense += 15
+        spdef += 15
+        spd += 15
         twice = random.randint(1, 1)
         def crit():
             cr = random.randint(1, 10)
@@ -491,21 +495,30 @@ def battleseq():
     hp
     while ehp > 0:
         if hp <= 0:
+            root.destroy()
+            os._exit
             os.startfile('death.mp3')
             messagebox.showinfo("" + name2 + "", "Stay with me! No, you can't!"
                             " Don't-")
             messagebox.showinfo(". . .", "" + name + " took too much "
                                 "damage and failed to complete his journey."
                                 " Thus, ended " + name + " and " + name2 + "'s journey.")
+            messagebox.showinfo("TIPS", "When given the opportunity to train, get the"
+                                " experience to be stronger. Also, some pairs of wea"
+                                "pons are better than others.")
             messagebox.showinfo("You Lost", "You lost")
             root.destroy()
             os._exit
             
             
         else:
-            battle = simpledialog.askstring("\nBattle", "HP: " + str(hp) + "" + \
-                                            "\nPartner HP: " + str(php) + ""
-                                            "\n" + ename + ": " + str(ehp) + ""
+            battle = simpledialog.askstring("Battle",
+                                            "\n       HP: " + str(hp) + "" + \
+                                            "\n"
+                                            "\n       Partner HP: " + str(php) + ""
+                                            "\n"
+                                            "\n       " + ename + ": " + str(ehp) + ""
+                                            "\n" 
                                             "\nChoose: Attack, Guard, Item")
             global battle
             if battle == "Attack" or battle == "attack":
@@ -615,7 +628,7 @@ def battleseq():
         spd += 4
         attack += 4
         defense += 4
-        hp +=5
+        bhp +=5
     else:
         pass
     pexp += eexp
@@ -624,11 +637,11 @@ def battleseq():
         pexp - 17
         plvl += 1
         messagebox.showinfo("Level Up!", "" + name2 + " has reached level " + str(lvl) + "."
-                            "All stats were upped by 4!")
+                            " All stats were upped by 4!")
         pspd += 4
         patk += 4
         pdef += 4
-        php += 5
+        bphp += 5
     else:
         pass
         
@@ -709,8 +722,9 @@ while ehp > 0:
         continue
 os.startfile('vic1.mp3')
 messagebox.showinfo("TIPS:", "You only lose if " + name + " (the player) "
-                    "runs out of health. Also, after each battle experience"
-                    " points are gained.")
+                    "runs out of health. After each battle experience"
+                    " points are gained. Training will allow you to ga"
+                    "in more experience points so take advantage.")
 messagebox.showinfo("???",
                     "Grr... Guess you two are stronger than I thought."
                     " Can't believe I lost. I'll be back though")
@@ -738,7 +752,7 @@ while choice != "a" or choice == "A":
         eweap = 10
         eexp = 2
 
-        messagebox.showinfo("" + name2 + "", "Alright, I'll leave you too it."
+        messagebox.showinfo("" + name2 + "", "Alright, I'll leave you too it. "
                             "Let me know when you're ready.")
         os.startfile('battle.mp3')
         battleseq()
@@ -806,12 +820,12 @@ while choice != "c" or choice != "C":
         os.startfile('battle2.mp3')
         ehp = 25
         eatk = 17
-        edef = 18
+        edef = 16
         esp = 15
         espd = 18
         eweap = 10
         eexp = 8
-        ename == "Knight"
+        ename = "Knight"
         battleseq()
         os.startfile('vic1.mp3')
         messagebox.showinfo("Knight", "Whoa, you two are tough!"
@@ -879,7 +893,7 @@ messagebox.showinfo("" + name2 + "", "Whoa! This guy means business!"
 
 ehp = 28
 eatk = 22
-edef = 25
+edef = 20
 esp = 15
 espd = 19
 eweap = 10
@@ -894,9 +908,9 @@ choice = simpledialog.askstring("" + name2 + "",
                                 "\n" + name + ", what should we do?" + \
                                 "\n     (A) We should check on the lady that got mugged."
                                 "\n     (B) Let him go? We gotta strike first!")
-while choice != "a" or choice == "A" or elif choice != "b" or choice != "B":
+while choice != "a" or choice == "A" or choice != "b" or choice != "B":
     if choice == "a" or choice == "A":
-        messagebox.showinfo("" + name2 "", "Yeah, you're right. Let's go see"
+        messagebox.showinfo("" + name2 + "", "Yeah, you're right. Let's go see"
                             " how she's doing.")
         os.startfile('civilian.mp3')
         messagebox.showinfo("" + name2 + "", "Hey there. You took quite"
@@ -918,7 +932,7 @@ while choice != "a" or choice == "A" or elif choice != "b" or choice != "B":
         os.startfile('danger.mp3')
         messagebox.showinfo("" + name2 + "", "Oh, no. This is bad...")
         messagebox.showinfo("" + name2 + "", "" + name + "! We have to"
-                            " stop them. If they activater those stones,"
+                            " stop them. If they activate those stones,"
                             " the entire world will be in danger. I'll"
                             " tell you about them while we go there. "
                             "Come on!")
@@ -931,9 +945,143 @@ while choice != "a" or choice == "A" or elif choice != "b" or choice != "B":
                             "t to have revenge against these people, magic wi"
                             "elders made a weapon. It wiped out almost the en"
                             "tire population and took out all magic users.")
-        messagebox.showinfo("" + name2 "", "We have to stop them at all costs"
+        messagebox.showinfo("" + name2 + "", "We have to stop them at all costs"
+                            ". If we don't... ")
+        messagebox.showinfo("Thug", "Hey, you two!")
+        os.startfile('encounter.mp3')
+        messagebox.showinfo("" + name2 + "", "Crap, they're here!")
+        messagebox.showinfo("Thug", "Heh, did you think I'd actually let you"
+                            " two go off after embarassing me?")
+        messagebox.showinfo("" + name2 + "", "It's over! We know what you're "
+                            "up too! We won't let you activate the ancient rocks!")
+        messagebox.showinfo("Thug", "Heh, so you found out? I might've let"
+                            " you two go before but now I definitely have to"
+                            " kill you. I got friends too now!")
+        messagebox.showinfo("" + name2 + "", "" + name + "! We can't waste time"
+                            " here! Just take out a few and let's book it to the"
+                            " rocks!")
+        messagebox.showinfo("Heavy Thug", "You two won't get away!")
+        messagebox.showinfo("" + name2 + "", "First up. Let's do it!")
+        ehp = 35
+        eatk = 23
+        edef = 26
+        esp = 15
+        espd = 11
+        eweap = 12
+        eexp = 11
+        ename = "Heavy Thug"
+        battleseq()
+        os.startfile('encounter.mp3')
+        messagebox.showinfo("" + name2 + "", "That took awhile but I think the"
+                            " other thugs are getting nervous.")
+        messagebox.showinfo("Mercenary", "You two look like a challenge"
+                            ". Why don't I stain your blood on my new blade?")
+        messagebox.showinfo("" + name2 + "", "He looks tough... Be careful "
+                            "" + name + "!")
+        ehp = 30
+        eatk = 27
+        edef = 23
+        esp = 15
+        espd = 21
+        eweap = 17
+        eexp = 15
+        ename = "Mercenary"
+        os.startfile('battle.mp3')
+        battleseq()
+        os.startfile('danger.mp3')
+        messagebox.showinfo("Mercenary", "H-How can this be? Urgh...")
+        messagebox.showinfo("" + name2 + "", "They're all shocked we beat"
+                            " that guy! Now's our chance, run!")
+        messagebox.showinfo("" + name2 + "", "I see it! There's the ancient r"
+                            "ocks! We're almost there!")
+        break
+        
+        
+        
+        
+           
+        
 
     elif choice == "b" or choice == "B":
+        messagebox.showinfo("" + name2 + "",
+                            "Alright, let's go after them!")
+        os.startfile('base.mp3')
+        messagebox.showinfo("" + name2 + "", "From I heard, they hang out a"
+                            "round here. But I don't-")
+        messagebox.showinfo("Gang Guard", "Hey you two!")
+        messagebox.showinfo("" + name2 + "", "Crap! We're spotted!")
+        messagebox.showinfo("Gang Guard", "You two... You two must be the"
+                            " ones the boss was talking about! Heh, must b"
+                            "e pretty strong if you actually survived an e"
+                            "ncounter with him.")
+        messagebox.showinfo("" + name2 + "", "Take us to your boss! Or"
+                            " do we have to do it the hard way?")
+        messagebox.showinfo("Gang Guard", "Ha. Tough talk for the two of"
+                            " you. Bring it on!")
+        messagebox.showinfo("" + name2 + "", "Alright " + name + ". It's time"
+                            " to bring justice!")
+        ehp = 30
+        eatk = 30
+        edef = 21
+        esp = 15
+        espd = 18
+        eweap = 12
+        eexp = 12
+        ename = "Gang Guard"
+        battleseq()
+        os.startfile('vic1.mp3')
+        messagebox.showinfo("Gang Guard", "Hah...hah... The boss was right"
+                            " about your strength. But by now, they must'v"
+                            "e done it.")
+        messagebox.showinfo("" + name2 + "", "Done what?")
+        messagebox.showinfo("Gang Guard", "Heheh, activate the ancient rocks.")
+        os.startfile('silence.mp3')
+        messagebox.showinfo("" + name2 + "", "W-What did you say?")
+        messagebox.showinfo("Gang Guard", "You heard me, the ancient rocks.")
+        os.startfile('danger.mp3')
+        messagebox.showinfo("Gang Guard", "The boss was worried that you mi"
+                            "ght interfere with our affairs so he sent som"
+                            "e of us to distract you. Soon, we'll have con"
+                            "trol of the whole world. And there's nothing y"
+                            "ou can do about it.")
+        messagebox.showinfo("" + name2 + "", "No... No, no, no! This can't be!"
+                            " " + name + "! We have to go. Now! I'll tell you"
+                            " about it on the way, just follow me!")
+        messagebox.showinfo("" + name2 + "", "*Huff, huff* Alright " + name + ""
+                            " here's the deal. Long ago, there was a lot of"
+                            " magic in the world. Like actual dark, deadly ma"
+                            "gic. People got sick of the magic users because "
+                            "of the chaos they caused and attempted to eradic"
+                            "ate all magical wielders. As a last ditch attemp"
+                            "t to have revenge against these people, magic wi"
+                            "elders made a weapon. It wiped out almost the en"
+                            "tire population and took out all magic users.")
+        messagebox.showinfo("" + name2 + "", "We're almost there, just over-")
+        messagebox.showinfo("Thug Brawler", "Hah! Where do you think you're going?")
+        os.startfile('encounter.mp3')
+        messagebox.showinfo("" + name2 + "", "No, not now!")
+        messagebox.showinfo("Thug Brawler", "From the looks of it, you're heading"
+                            " in the wrong direction. Let me show you the right way!")
+        messagebox.showinfo("" + name2 + "", "" + name + ", we have to make this"
+                            " quick. Let's do it!")
+        os.startfile('battle.mp3')
+        ehp = 28
+        eatk = 27
+        edef = 21
+        esp = 15
+        espd = 23
+        eweap = 14
+        eexp = 10
+        ename = "Thug Brawler"
+        battleseq()
+        os.startfile('danger.mp3')
+        messagebox.showinfo("" + name2 + "", "No time! We gotta go " + name + ".")
+        messagebox.showinfo("" + name2 + "", "There it is! We made it.")
+        break
+  
+        
+        
+                            
 
     else:
         choice = simpledialog.askstring("" + name2 + "",
@@ -941,7 +1089,207 @@ while choice != "a" or choice == "A" or elif choice != "b" or choice != "B":
                                 "\n     (A) We should check on the lady that got mugged."
                                 "\n     (B) Let him go? We gotta strike first!")
         continue
-        
+messagebox.showinfo("" + name2 + "", "Hey! We're here to stop you!")
+messagebox.showinfo("???", "So you finally made it!")
+messagebox.showinfo("" + name2 + "", "Hang on... You're the one that at"
+                    "tacked us on the road! Don't tell me your-")
+messagebox.showinfo("???", "Heh, that's right. I'm the boss of this here gang"
+                    ". And we will succeed in activating the weapon.")
+messagebox.showinfo("" + name2 + "", "You won't get away with this... Um...")
+messagebox.showinfo("???", "Ha! Don't even know the enemy's name do you? "
+                    "Very well...")
+messagebox.showinfo("Catalyz", "You may call me Catalyz. And you are about "
+                    " to die. Mikel!")
+messagebox.showinfo("Mikel", "You should be honored. The flesh that this bla"
+                    "de touches is only those of the strongest warriors.")
+messagebox.showinfo("" + name2 + "", "" + name + "! This is it. We have to "
+                    "defeat them. Otherwise it's game over. Let's do it!")
+os.startfile('mikel.mp3')
+ehp = 34
+eatk = 31
+edef = 28
+esp = 15
+espd = 32
+eweap = 17
+eexp = 20
+ename = "Assassin Mikel"
+battleseq()
+os.startfile('civilian.mp3')
+messagebox.showinfo("Mikel", "How? How can such powerful strength be possible"
+                    "? Hrgh, ugh...")
+messagebox.showinfo("" + name2 + "", "It's over Catalyz! You've lost!")
+messagebox.showinfo("Catalyz", "Mikel lost. Not I. Let me tell you something"
+                    ", back on the road, I was hardly trying. Though I was a"
+                    " bit shocked you beat me even at half my strength I can"
+                    " assure you that I will not make the same mistake again"
+                    ".")
+messagebox.showinfo("" + name2 + "", "" + name + "! I don't think he's bluff"
+                    "ing. But we've gotten stonger too! We won't let you des"
+                    "troy the world!")
+messagebox.showinfo("Catalyz", "Destroy the world? Haha, you're mistaken if y"
+                    "ou think I'd destroy the world I oh so want to conquer!")
+messagebox.showinfo("" + name2 + "", "What? What else are you going to do wi"
+                    "th them?")
+messagebox.showinfo("Catalyz", "Hahahaha! You'll seen soon enough. Now come"
+                    " at me!")
+os.startfile('boss.mp3')
+ehp = 40
+eatk = 36
+edef = 33
+esp = 15
+espd = 29
+eweap = 19
+eexp = 25
+ename = "Catalyz"
+battleseq()
+messagebox.showinfo("" + name2 + "", "We-We did it!")
+messagebox.showinfo("Catalyz", "Yes but you're too late. Now I will do the"
+                    " ritual.")
+messagebox.showinfo("Catalyz", "FUSION")
+os.startfile('danger.mp3')
+messagebox.showinfo("" + name2 + "", "Fusion? What's he doing?"
+                    " " + name + ", get back!")
+messagebox.showinfo("Catalyz", "AHWOOOOOHHH!!!")
+os.startfile('silence.mp3')
+messagebox.showinfo("" + name2 + "", "...Oh god. " + name + ", it's impos"
+                    "sible, but we have to stop him. This is it.")
+os.startfile('boss2.mp3')
+messagebox.showinfo("Ancient Catalyz", "...You two will not stop me.")
+messagebox.showinfo("Ancient Catalyz", "BUT I WILL BE GLAD TO KILL YOU")
+ehp = 50
+eatk = 40
+edef = 37
+esp = 15
+espd = 27
+eweap = 21
+eexp = 28
+ename = "Ancient Catalyz"
+battleseq()
+os.startfile('battle2.mp3')
+messagebox.showinfo("" + name2 + "", "*Huff* We actually... we actually "
+                    "defeated him.")
+messagebox.showinfo("Ancient Catalyz", "How? How can this be possible?"
+                    " I did everything. I am fused with the ultimate w"
+                    "eapon! How did I lose!?")
+os.startfile('silence.mp3')
+messagebox.showinfo("???", "Because you are weak.")
+messagebox.showinfo("" + name2 + "", "Wha-Who said that?")
+messagebox.showinfo("???", "Puny mortal. You really thought that you could ta"
+                    "me my power? I will show you the true power of The Grea"
+                    "t Ancient!")
+messagebox.showinfo("Ancient Catalyz", "What? What is this- AAAHHHHH!!")
+messagebox.showinfo("...", "FWOOOM!")
+messagebox.showinfo
+messagebox.showinfo("" + name2 + "", "What is that?")
+os.startfile('final.mp3')
+messagebox.showinfo("The Great Ancient", "I am The Great Ancient! I am the d"
+                    "ark power that once destroyed the world! And now my powe"
+                    "r has been awakened. Prepare to be defeated mortal!")
+messagebox.showinfo("" + name2 + "", "" + name + "! This is it! If we lose"
+                    " here, we lose everything!")
+choice = simpledialog.askstring("" + name2 + "", "\nAre you ready for this?" + \
+                                "\n     (A) Ready when you are friend!"
+                                "\n     (B) This is it... We won't lose!"
+                                "\n     (C) Uh, can I take a quick bathroom break?")
+while choice != "a" or choice != "A" or choice != "b" or choice != "B" or choice != "c" or choice != "C":
+    if choice == "a" or choice == "A":
+        messagebox.showinfo("" + name2 + "", "Friend... I haven't heard that"
+                            " for so long. Thank you for standing by my side!"
+                            " I won't let you down " + name + "!")
+        break
+    elif choice == "b" or choice == "B":
+        messagebox.showinfo("" + name2 + "", "That's the spirit! Let's finis"
+                            "h this once and for all!")
+        break
+    elif choice == "c" or choice == "C":
+        messagebox.showinfo("" + name2 + "", "Man, able to joke in a time like"
+                            " this... I hope you're ready " + name + "!"
+                            " Everything rides on this battle!")
+        break
+    else:
+        choice = simpledialog.askstring("" + name2 + "", "\nAre you ready for this?" + \
+                                "\n     (A) Ready when you are friend!"
+                                "\n     (B) This is it... We won't lose!"
+                                "\n     (C) Uh, can I take a quick bathroom break?")
+        continue
+messagebox.showinfo("" + name2 + "", "Great Ancient! Your reign will end just a"
+                    "s it begun! I, " + name2 + " and my partner " + name + ""
+                    " will defeat you!")
+messagebox.showinfo("The Great Ancient", "Hahahaha...")
+messagebox.showinfo("The Great Ancient", "COME AT ME")
+ehp = 80
+eatk = 45
+edef = 43
+esp = 15
+espd = 33
+eweap = 23
+eexp = 30
+ename = "The Great Ancient"
+battleseq()
+os.startfile('endgame.mp3')
+messagebox.showinfo("The Great Ancient", "No! I am the ultimate weapon! I can"
+                    "not be defeated! You two are just mortals! How is this p"
+                    "ossible?")
+messagebox.showinfo("" + name2 + "", "" +  name + "! Let's finish this!")
+
+ehp = 30
+eatk = 35
+edef = 40
+esp = 15
+espd = 1
+eweap = 21
+eexp = 30
+ename = "The Great Ancient: Ancient Core"
+battleseq()
+messagebox.showinfo("The Great Ancient", "The ultimate weapon... is defeated.")
+messagebox.showinfo("" + name2 + "", "*Huff* We did it... we saved the world..."
+                    " " + name + "... We did it...")
+choice = simpledialog.askstring("" + name + "",
+                                "\n (A) Haha, yeah we sure did..." + \
+                                "\n (B) Are you sure we did?"
+                                "\n (C) I know... We did it...")
+while choice != "a" or choice != "A" or choice != "b" or choice != "B" or choice != "C" or choice != "c":
+    if choice == "a" or choice == "A":
+        messagebox.showinfo("" + name2 + "", "It was hard, but it was worthit"
+                            ". " + name + "... Thank you so much! My dream is"
+                            " complete!")
+        os.startfile('endgame2.mp3')
+        break
+    elif choice == "b" or choice == "B":
+        messagebox.showinfo("" + name2 + "",
+                            "Ha! Don't be playing jokes with me! But I can't"
+                            " believe this all happened in one day and it's"
+                            " the day I met you! Thank you... " + name + ".")
+        os.startfile('endgame2.mp3')
+        break
+    elif choice == "C" or choice == "c":
+        messagebox.showinfo("" + name2 + "", "Unbelieveable, right? But we did"
+                            " it, even with just one day. You really are a gre"
+                            "at warrior. And a great friend. Thanks " + name + ""
+                            "!")
+        os.startfile('endgame2.mp3')
+        break
+    else:
+        choice = simpledialog.askstring("" + name + "",
+                                "\n (A) Haha, yeah we sure did..." + \
+                                "\n (B) Are you sure we did?"
+                                "\n (C) I know... We did it...")
+        continue
+messagebox.showinfo("" + name + "",
+                    "That was my adventure. Of how me and " + name2 + ""
+                    " saved the world. I will never forget that day. I"
+                    " helped achieve his dream, and he made me realize"
+                    " a new dream.")
+messagebox.showinfo("" + name + "",
+                    "...To keep the world safe from harm.")
+messagebox.showinfo("Thank you!",
+                    "Thank you for playing! Restart the program to play again"
+                    " and get some different choices or be satisfied with sav"
+                    "ing the world!")
+root.destroy()
+os._exit
+                    
+                            
                                     
  
                 
