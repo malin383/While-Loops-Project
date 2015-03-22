@@ -1,11 +1,13 @@
 # Simulator by Niraj Mali
 #credits
 'Music:'
-'Fire Emblem Awakeing: Music 62'
+'Fire Emblem Awakening: Music 62'
+'Fire Emblem Awakening: And what if I cant?'
 'Youtube, Jojikiba: Walking on grass (sound effect)'
 'MGQ Battle Sequence'
 'Pokemon: Aquacorde Town'
 'Pokemon: Unwavering Emotions'
+'Pokemon: Team Aqua/Magma Hideout'
 'Hajime no Ippo: Weight of my pride'
 
     
@@ -498,7 +500,6 @@ def battleseq():
             messagebox.showinfo("You Lost", "You lost")
             root.destroy()
             os._exit
-            break
             
             
         else:
@@ -796,7 +797,6 @@ choice = simpledialog.askstring("" + name + "",
                                 "\n    (B) What's up? Something bothering you?"
                                 "\n    (C) Come on, back to the inn.")
 while choice != "c" or choice != "C":
-    os.startfile('emotion.mp3')
     if choice == "a" or choice == "A":
         messagebox.showinfo("" + name2 + "", "Really? Alright, uh, let's get started")
         messagebox.showinfo("Knight", "Hey, are you two training too?"
@@ -841,6 +841,9 @@ while choice != "c" or choice != "C":
                             " ahead, cause they left me these weapons and a "
                             "good reputation. That's why I vowed to fight for"
                             " those who can't fight for themselves.")
+        messagebox.showinfo("" + name2 + "", "It's just what keeps me going."
+                            " I'm sure you have your own dreams too, but I w"
+                            "on't pester you about that.")
         os.startfile('town.mp3')
         choice = simpledialog.askstring("" + name + "",
                                 "\nAnyways, thanks for listening. What do you want to do now?" + \
@@ -875,17 +878,71 @@ messagebox.showinfo("" + name2 + "", "Whoa! This guy means business!"
                     " " + name + ", get ready!")
 
 ehp = 28
-eatk = 19
-edef = 21
+eatk = 22
+edef = 25
 esp = 15
-espd = 18
-eweap = 8
+espd = 19
+eweap = 10
 eexp = 13
 battleseq()
 messagebox.showinfo("Thug", "The boss wasn't kidding about your guy's"
                     " strength... Guess I'll have to get the rest of the gang.")
-                            
+messagebox.showinfo("" + name2 + "",
+                    "Whoa, that guy was actually pretty tough. He's gonna get"
+                    " the rest of the gang soon...")
+choice = simpledialog.askstring("" + name2 + "",
+                                "\n" + name + ", what should we do?" + \
+                                "\n     (A) We should check on the lady that got mugged."
+                                "\n     (B) Let him go? We gotta strike first!")
+while choice != "a" or choice == "A" or elif choice != "b" or choice != "B":
+    if choice == "a" or choice == "A":
+        messagebox.showinfo("" + name2 "", "Yeah, you're right. Let's go see"
+                            " how she's doing.")
+        os.startfile('civilian.mp3')
+        messagebox.showinfo("" + name2 + "", "Hey there. You took quite"
+                            " the experience there ma'am. Are you alright?")
+        messagebox.showinfo("Civilian", "Oh, I'm fine thank you. By the loo"
+                            "ks of it, he was after you. I know some doctors"
+                            " if you need anything.")
+        messagebox.showinfo("" + name2 + "", "We're fine, thank you. That"
+                            " thug was no match for us. But do you know a"
+                            "nything of what he was talking about?")
+        messagebox.showinfo("Civilian", "Well, these are only rumors but..."
+                            " I heard the gang that thug was in is trying t"
+                            "o activate the ancient stones.")
+        os.startfile('silence.mp3')
+        messagebox.showinfo("" + name2 + "", "Wait. Did you say the ancient stones?")
+        messagebox.showinfo("Civilian", "Yes. The very same stones of ancient lege"
+                            "nd. I thought it was just a myth but some people thin"
+                            "k that the gang might actually do it.")
+        os.startfile('danger.mp3')
+        messagebox.showinfo("" + name2 + "", "Oh, no. This is bad...")
+        messagebox.showinfo("" + name2 + "", "" + name + "! We have to"
+                            " stop them. If they activater those stones,"
+                            " the entire world will be in danger. I'll"
+                            " tell you about them while we go there. "
+                            "Come on!")
+        messagebox.showinfo("" + name2 + "", "*Huff, huff* Alright " + name + ""
+                            " here's the deal. Long ago, there was a lot of"
+                            " magic in the world. Like actual dark, deadly ma"
+                            "gic. People got sick of the magic users because "
+                            "of the chaos they caused and attempted to eradic"
+                            "ate all magical wielders. As a last ditch attemp"
+                            "t to have revenge against these people, magic wi"
+                            "elders made a weapon. It wiped out almost the en"
+                            "tire population and took out all magic users.")
+        messagebox.showinfo("" + name2 "", "We have to stop them at all costs"
+
+    elif choice == "b" or choice == "B":
+
+    else:
+        choice = simpledialog.askstring("" + name2 + "",
+                                "\n" + name + ", what should we do?" + \
+                                "\n     (A) We should check on the lady that got mugged."
+                                "\n     (B) Let him go? We gotta strike first!")
+        continue
         
+                                    
  
                 
 
