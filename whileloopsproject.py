@@ -172,7 +172,7 @@ while attack == 0:
                             (B) Sword-Take a strike and kill the enemy; Be weary of your quick rivals
                             (C) Claws-A balanced weapon. You've got the speed, the attack, and defense. Just don't let that get to your head""")
     if weapon == "a" or weapon == "A":
-        attack += 18
+        attack += 20
         defense += 13
         spdef +=15
         spd += 20
