@@ -80,7 +80,7 @@ def exp():
     exp += eexp
     global lvl
     global exp
-    if exp > 15:
+    while exp > 15:
         lvl += 1
         exp -= 15
         attack += 3
@@ -99,7 +99,7 @@ def exp():
     pexp += eexp
     global plvl
     global pexp
-    if pexp > 18:
+    while pexp > 18:
         patk += 3
         pdef += 3
         psp += 3
@@ -172,7 +172,7 @@ while attack == 0:
                             (B) Sword-Take a strike and kill the enemy; Be weary of your quick rivals
                             (C) Claws-A balanced weapon. You've got the speed, the attack, and defense. Just don't let that get to your head""")
     if weapon == "a" or weapon == "A":
-        attack += 20
+        attack += 22
         defense += 13
         spdef +=15
         spd += 20
@@ -240,7 +240,7 @@ while attack == 0:
             partner = simpledialog.askstring("Partner's Weapon", "(1) Dagger (2)Claws")
             if (partner == "1" and ((weapon == "b" or weapon == "B") or (weapon == "C" or weapon == "c"))):
                 partner = dag
-                patk += 17
+                patk += 19
                 pdef += 12
                 psp += 13
                 pspd += 18
@@ -270,10 +270,10 @@ while attack == 0:
                 continue
         weapon = swd
     elif weapon == "c" or weapon == "C":
-        attack += 15
-        defense += 15
-        spdef += 15
-        spd += 15
+        attack += 17
+        defense += 17
+        spdef += 17
+        spd += 17
         twice = random.randint(1, 1)
         def crit():
             cr = random.randint(1, 10)
@@ -620,7 +620,7 @@ def battleseq():
     php = bphp
     exp += eexp
     messagebox.showinfo("Battle", "" + name + " gained " + str(eexp) + " experience points.")
-    if exp > 15:
+    while exp > 15:
         exp -= 15
         lvl += 1
         messagebox.showinfo("Level Up!", "" + name + " has reached level " + str(lvl) + "."
@@ -633,8 +633,8 @@ def battleseq():
         pass
     pexp += eexp
     messagebox.showinfo("Battle", "" + name2 + " gained " + str(eexp) + " experience points.")
-    if pexp > 17:
-        pexp - 17
+    while pexp > 17:
+        pexp -= 17
         plvl += 1
         messagebox.showinfo("Level Up!", "" + name2 + " has reached level " + str(lvl) + "."
                             " All stats were upped by 4!")
@@ -769,7 +769,7 @@ while choice != "a" or choice == "A":
     elif choice == "b" or choice == "B":
         break
     else:
-        choice == messagebox.showinfo("" + name2 + "",
+        choice == simpledialog.askstring("" + name2 + "",
                             "\nWhat was that?" + \
                             "\n      (A) Sorry. Let's head to town"
                             "\n      (B) Let's train some more")
@@ -898,6 +898,7 @@ esp = 15
 espd = 19
 eweap = 10
 eexp = 13
+ename == "Thug"
 battleseq()
 messagebox.showinfo("Thug", "The boss wasn't kidding about your guy's"
                     " strength... Guess I'll have to get the rest of the gang.")
@@ -1156,12 +1157,12 @@ messagebox.showinfo("" + name2 + "", "...Oh god. " + name + ", it's impos"
 os.startfile('boss2.mp3')
 messagebox.showinfo("Ancient Catalyz", "...You two will not stop me.")
 messagebox.showinfo("Ancient Catalyz", "BUT I WILL BE GLAD TO KILL YOU")
-ehp = 50
-eatk = 40
-edef = 37
+ehp = 60
+eatk = 48
+edef = 42
 esp = 15
 espd = 27
-eweap = 21
+eweap = 22
 eexp = 28
 ename = "Ancient Catalyz"
 battleseq()
@@ -1215,14 +1216,18 @@ while choice != "a" or choice != "A" or choice != "b" or choice != "B" or choice
 messagebox.showinfo("" + name2 + "", "Great Ancient! Your reign will end just a"
                     "s it begun! I, " + name2 + " and my partner " + name + ""
                     " will defeat you!")
+messagebox.showinfo("The Great Ancient", "Hahahaha... You think you can"
+                    " defeat me?")
+messagebox.showinfo("" + name2 + "", "You will not succeed. Prepare to "
+                    "be defeated!")
 messagebox.showinfo("The Great Ancient", "Hahahaha...")
 messagebox.showinfo("The Great Ancient", "COME AT ME")
 ehp = 80
-eatk = 45
-edef = 43
+eatk = 53
+edef = 50
 esp = 15
-espd = 33
-eweap = 23
+espd = 40
+eweap = 26
 eexp = 30
 ename = "The Great Ancient"
 battleseq()
@@ -1232,12 +1237,12 @@ messagebox.showinfo("The Great Ancient", "No! I am the ultimate weapon! I can"
                     "ossible?")
 messagebox.showinfo("" + name2 + "", "" +  name + "! Let's finish this!")
 
-ehp = 30
-eatk = 35
+ehp = 100
+eatk = (pdef + pspd/2) - add
 edef = 40
 esp = 15
 espd = 1
-eweap = 21
+eweap = 0
 eexp = 30
 ename = "The Great Ancient: Ancient Core"
 battleseq()
