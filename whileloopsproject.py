@@ -1,3 +1,4 @@
+
 # Simulator by Niraj Mali
 #credits
 'Music:'
@@ -80,7 +81,7 @@ def exp():
     exp += eexp
     global lvl
     global exp
-    if exp > 15:
+    while exp > 15:
         lvl += 1
         exp -= 15
         attack += 3
@@ -91,15 +92,12 @@ def exp():
     
         messagebox.showinfo("Level up!", "" + name + " grew to level "
                             "" + str(lvl) + ".")
-        
-    else:
-        pass
     plvl = 1
     pexp = 0
     pexp += eexp
     global plvl
     global pexp
-    if pexp > 18:
+    while pexp > 18:
         patk += 3
         pdef += 3
         psp += 3
@@ -766,10 +764,10 @@ while choice != "a" or choice == "A":
             break
         else:
             continue
-    elif choice == "b" or choice == "B":
+    elif choice == "a" or choice == "A":
         break
     else:
-        choice == messagebox.showinfo("" + name2 + "",
+        choice = simpledialog.askstring("" + name2 + "",
                             "\nWhat was that?" + \
                             "\n      (A) Sorry. Let's head to town"
                             "\n      (B) Let's train some more")
@@ -898,6 +896,7 @@ esp = 15
 espd = 19
 eweap = 10
 eexp = 13
+ename = "Thug"
 battleseq()
 messagebox.showinfo("Thug", "The boss wasn't kidding about your guy's"
                     " strength... Guess I'll have to get the rest of the gang.")
@@ -1006,7 +1005,7 @@ while choice != "a" or choice == "A" or choice != "b" or choice != "B":
         messagebox.showinfo("" + name2 + "",
                             "Alright, let's go after them!")
         os.startfile('base.mp3')
-        messagebox.showinfo("" + name2 + "", "From I heard, they hang out a"
+        messagebox.showinfo("" + name2 + "", "From what I heard, they hang out a"
                             "round here. But I don't-")
         messagebox.showinfo("Gang Guard", "Hey you two!")
         messagebox.showinfo("" + name2 + "", "Crap! We're spotted!")
