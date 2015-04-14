@@ -171,7 +171,7 @@ while attack == 0:
                             (C) Claws-A balanced weapon. You've got the speed, the attack, and defense. Just don't let that get to your head""")
     if weapon == "a" or weapon == "A":
         attack += 22
-        defense += 13
+        defense += 15
         spdef +=15
         spd += 20
         def crit():
@@ -221,7 +221,7 @@ while attack == 0:
 
     elif weapon == "b" or weapon == "B":
         attack += 18
-        defense += 18
+        defense += 17
         spdef += 17
         spd += 12
         def crit():
@@ -767,11 +767,7 @@ while choice != "a" or choice == "A":
     elif choice == "a" or choice == "A":
         break
     else:
-<<<<<<< HEAD
         choice = simpledialog.askstring("" + name2 + "",
-=======
-        choice == simpledialog.askstring("" + name2 + "",
->>>>>>> 5508e764756b1963f33e796016ca23a9b5ad2120
                             "\nWhat was that?" + \
                             "\n      (A) Sorry. Let's head to town"
                             "\n      (B) Let's train some more")
@@ -900,11 +896,7 @@ esp = 15
 espd = 19
 eweap = 10
 eexp = 13
-<<<<<<< HEAD
 ename = "Thug"
-=======
-ename == "Thug"
->>>>>>> 5508e764756b1963f33e796016ca23a9b5ad2120
 battleseq()
 messagebox.showinfo("Thug", "The boss wasn't kidding about your guy's"
                     " strength... Guess I'll have to get the rest of the gang.")
